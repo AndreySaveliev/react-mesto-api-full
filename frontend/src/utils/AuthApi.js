@@ -1,6 +1,6 @@
 class AuthApi {
   constructor() {
-    this._baseURL = 'https://api.saveliev.nomoredomains.icu'
+    this._baseURL = 'http://api.saveliev.nomoredomains.icu'
   }
 
   signup(password, email) {
