@@ -13,7 +13,7 @@ const { PORT = 3000 } = process.env;
 const app = express();
 
 app.use(cors({
-  origin: 'https://saveliev.nomoredomains.icu'
+  origin: 'https://saveliev.nomoredomains.icu',
 }));
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
