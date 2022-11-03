@@ -1,0 +1,11 @@
+.tool__div {
+  width: 430px;
+  display: flex;
+  border-radius: 10px;
+  flex-direction: column;
+  background-color: #ffffff;
+  position: absolute;
+  top: 25%;
+  right: 39%;
+  z-index: 2;
+}

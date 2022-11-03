@@ -1,0 +1,21 @@
+.grid__delete {
+  background-image: url(../../../images/delete-button.svg);
+  background-size: contain;
+  background-color: transparent;
+  width: 18px;
+  height: 19px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border: 0;
+  transition: 0.2s;
+  z-index: 2;
+  cursor: pointer;
+}
+.grid__delete:hover {
+  opacity: 0.6;
+}
+
+.button_hiden {
+  visibility: hidden;
+}

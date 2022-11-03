@@ -1,0 +1,6 @@
+.popup-card__block {
+  z-index: 1;
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+}

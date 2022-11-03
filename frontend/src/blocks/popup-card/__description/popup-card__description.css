@@ -1,0 +1,9 @@
+.popup-card__description {
+  z-index: 1;
+}
+
+@media screen and (max-width: 726px) {
+  .popup-card__description {
+    margin: 0 0 0 28px;
+  }
+}

@@ -1,0 +1,26 @@
+.popup__close-button_delete-card {
+  min-width: 32px;
+  max-height: 32px;
+  background-image: url(../../../images/close-button.svg);
+  background-size: contain;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  transition: 0.2s;
+  margin: -40px 0 0 8px;
+  position: absolute;
+  top: 0px;
+  right: -40px;
+  z-index: 2;
+}
+.popup__close-button_delete-card:hover {
+  opacity: 0.6;
+}
+@media screen and (max-width: 767px) {
+  .popup__close-button_delete-card {
+    min-width: 20px;
+    max-height: 20px;
+    top: 330px;
+    right: 256px;
+  }
+}

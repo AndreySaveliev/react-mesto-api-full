@@ -1,0 +1,10 @@
+.input-area__addition-button {
+  background-color: transparent;
+  color: #ffffff;
+  font-family: 'Inter';
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 400;
+  margin: 15px auto 0;
+  cursor: pointer;
+}

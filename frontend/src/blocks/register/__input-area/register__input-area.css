@@ -1,0 +1,5 @@
+.register__input-area {
+  margin: 90px auto 216px;
+  display: flex;
+  flex-direction: column;
+}

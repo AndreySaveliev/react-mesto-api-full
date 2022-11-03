@@ -1,0 +1,10 @@
+.input-area__input {
+  height: 27px;
+  color: #cccccc;
+  border-width: 0 0 2px 0;
+  border-color: #cccccc;
+  padding: 0;
+  background-color: transparent;
+  margin: 0 0 30px 0;
+  font-family: 'Inter', Arial, sans-serif;
+}

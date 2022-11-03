@@ -1,0 +1,9 @@
+.tool__title {
+  font-family: 'Inter';
+  width: 358px;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 29px;
+  text-align: center;
+  margin: 0 auto 60px;
+}

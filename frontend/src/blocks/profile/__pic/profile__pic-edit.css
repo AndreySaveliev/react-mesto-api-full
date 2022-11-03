@@ -1,0 +1,22 @@
+.profile__pic-edit {
+  background-image: url(../../../images/edit-profile-pic.svg);
+  position: absolute;
+  background-color: transparent;
+  background-size: 26px;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0;
+  left: 0;
+  transition: 0.2s;
+  cursor: pointer;
+  width: 120px;
+  height: 120px;
+  border: none;
+  padding: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .profile__pic-edit {
+    left: 100px;
+  }
+}

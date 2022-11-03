@@ -1,0 +1,13 @@
+.grid__img {
+  width: 282px;
+  height: 282px;
+  grid-row: 1/2;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.grid__img:hover {
+  transform: scale(1.1);
+}
