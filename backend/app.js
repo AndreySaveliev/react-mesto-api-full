@@ -12,8 +12,11 @@ require('dotenv').config();
 const { PORT = 3000 } = process.env;
 const app = express();
 
-app.use(cors());
-
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://saveliev.nomoredomains.icu/signin');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
 });
