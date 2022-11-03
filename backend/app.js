@@ -6,6 +6,7 @@ const cors = require('cors');
 const { login, createUser } = require('./controlles/user');
 const auth = require('./middlewares/auth');
 const Error404 = require('./Errors/Error404');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 require('dotenv').config();
 
 const { PORT = 3000 } = process.env;
@@ -21,6 +22,8 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(requestLogger);
 
 app.get('/crash-test', () => {
   setTimeout(() => {
@@ -47,6 +50,8 @@ app.post('/signup', celebrate({
 app.use(auth);
 app.use('/users', require('./routes/user'));
 app.use('/cards', require('./routes/card'));
+
+app.use(errorLogger);
 
 app.use(errors());
 
