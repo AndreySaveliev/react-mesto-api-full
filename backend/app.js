@@ -6,7 +6,7 @@ const cors = require('cors');
 const { login, createUser } = require('./controlles/user');
 const auth = require('./middlewares/auth');
 const Error404 = require('./Errors/Error404');
-const { requestLogger, errorLogger } = require('./middlewares/logger');
+const { requestLogger, errorLogger } = require('./middlewares/loger');
 require('dotenv').config();
 
 const { PORT = 3000 } = process.env;
