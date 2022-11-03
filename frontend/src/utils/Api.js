@@ -78,7 +78,7 @@ class Api {
       .then(this._checkResponse)
   }
   changeProfilePic(avatar) {
-    return fetch(`https://mesto.nomoreparties.co/v1/cohort-47/users/me/avatar `, {
+    return fetch(`${this._baseURl}/users/me/avatar `, {
       method: "PATCH",
       headers: {
         authorization: this._authorization,
