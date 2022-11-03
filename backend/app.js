@@ -17,11 +17,11 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// const corsOption = {
-//   origin: 'http://saveliev.nomoredomains.icu',
-// };
-
-app.use(cors());
+const corsOption = {
+  origin: 'http://saveliev.nomoredomains.icu',
+};
+app.options('*', cors());
+app.use(cors(corsOption));
 
 app.get('/crash-test', () => {
   setTimeout(() => {
