@@ -1,6 +1,6 @@
 class AuthApi {
   constructor() {
-    this._baseURL = 'http://api.saveliev.nomoredomains.icu'
+    this._baseURL = 'https://api.saveliev.nomoredomains.icu'
   }
 
   signup(password, email) {
@@ -21,6 +21,7 @@ class AuthApi {
     return fetch(`${this._baseURL}/signin`, {
       method: 'POST',
       headers: {
+        'Accept': 'application/json',
         "Content-Type": 'application/json'
       },
       body: JSON.stringify({
@@ -35,6 +36,7 @@ class AuthApi {
     return fetch(`${this._baseURL}/users/me`, {
       method: 'GET',
       headers: {
+        'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       }

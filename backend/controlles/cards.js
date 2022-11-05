@@ -30,13 +30,14 @@ const createCard = (req, res, next) => {
 
 const deleteCard = (req, res, next) => {
   const { cardId } = req.params;
+  console.log(cardId);
   Card.findById(cardId)
     .then((card) => {
       if (card === null) {
         throw new Error404('Не удалось найти карточку');
       }
       if (card.owner.toString() === req.user._id) {
-        Card.deleteOne()
+        Card.deleteOne(card)
           .then(res.send({ data: card }));
       } else {
         throw new Error403('Вы не можете удалять карточки других пользователей.');
@@ -53,7 +54,7 @@ const deleteCard = (req, res, next) => {
 
 const putLike = (req, res, next) => {
   const { cardId } = req.params;
-  const userId = req.user._id;
+  const userId = req.user;
   Card.findByIdAndUpdate({ _id: cardId }, { $addToSet: { likes: userId } }, { new: true })
     .then((card) => {
       if (card === null) {

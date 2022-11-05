@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 function Card({
   card,
   onCardClick,
@@ -5,21 +7,29 @@ function Card({
   onCardLike,
   onCardDeleteClick,
 }) {
-  const isAuthor = card.owner._id === currentUser._id;
-  const isLiked = card.likes.some((el) => el._id === currentUser._id);
+  const [isLiked, setLiked] = useState(false)
+  const [isAuthor, setAuthor] = useState(false)
+
 
   function handleClick() {
     onCardClick(card);
   }
 
   function handleLikeClick() {
+    console.log(card, 'card in card.js')
     onCardLike(card);
+    setLiked(!isLiked)
   }
 
-  function handleCardDelete() {
+  function handleCardDelete(card) {
+    console.log(card)
     onCardDeleteClick();
     onCardClick(card._id);
   }
+
+  useEffect(() => {
+    setAuthor(card.owner === currentUser._id)
+    });
 
   return (
     <div className="grid__cell" key={card}>

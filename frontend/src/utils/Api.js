@@ -1,7 +1,7 @@
 import { options } from "./options"
 class Api {
   constructor(options) {
-    this._authorization = options.authorization
+    this._authorization = `Bearer ${localStorage.getItem("token")}`;
     this._cohort = options.cohort
     this._baseURL = options.baseURL
     this._user = {}
@@ -78,7 +78,7 @@ class Api {
       .then(this._checkResponse)
   }
   changeProfilePic(avatar) {
-    return fetch(`${this._baseURl}/users/me/avatar `, {
+    return fetch(`https://api.saveliev.nomoredomains.icu/users/me/avatar`, {
       method: "PATCH",
       headers: {
         authorization: this._authorization,

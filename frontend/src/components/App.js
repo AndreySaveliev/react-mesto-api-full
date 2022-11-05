@@ -70,7 +70,7 @@ function App() {
     bid
       .saveUserData(info.name, info.about)
       .then((res) => {
-        setCurrentUser(res);
+        setCurrentUser(res.data);
         closeAllPopups();
       })
       .catch((error) =>
@@ -82,7 +82,7 @@ function App() {
     bid
       .changeProfilePic(info.avatar)
       .then((res) => {
-        currentUser.avatar = res.avatar;
+        currentUser.avatar = res.data.avatar;
         closeAllPopups();
       })
       .catch((error) =>
@@ -91,22 +91,25 @@ function App() {
   }
 
   function handleClickLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    console.log(card, 'handle clikc card')
+    const isLiked = card.likes.some((i) => i === currentUser._id);
     if (!isLiked) {
       bid
-        .like(card._id, !isLiked)
+        .like(card._id)
         .then((newCard) => {
+          console.log(newCard, 'newCard')
           setCards((state) =>
-            state.map((c) => (c._id === card._id ? newCard : c))
+            state.map((c) => (c._id === card._id ? newCard.data : c))
           );
+          console.log(cards)
         })
         .catch((error) => console.log("Ошибка! Не удалось отправить запрос"));
     } else {
       bid
-        .unlike(card._id, !isLiked)
+        .unlike(card._id)
         .then((newCard) => {
           setCards((state) =>
-            state.map((c) => (c._id === card._id ? newCard : c))
+            state.map((c) => (c._id === card._id ? newCard.data : c))
           );
         })
         .catch((error) => console.log("Ошибка! Не удалось отправить запрос"));
@@ -129,10 +132,10 @@ function App() {
     bid
       .postCard(card.name, card.link)
       .then((newCard) => {
-        setCards([newCard, ...cards]);
+        setCards([...cards, newCard.data]);
         closeAllPopups();
       })
-      .catch((error) => console.log("Ошибка! Не удалось создать карточку"));
+      .catch((error) => console.log(error, "Ошибка! Не удалось создать карточку"));
   }
 
   function handleSetLoggedIn(data) {
@@ -143,6 +146,7 @@ function App() {
   useEffect(() => {
     if (localStorage.getItem("token")) {
       const token = localStorage.getItem("token");
+  
       auth
         .checkMe(token)
         .then((res) => {
@@ -161,14 +165,14 @@ function App() {
     bid
       .getInitialCards()
       .then((res) => {
-        setCards(...cards, res);
+        setCards(...cards, res.data);
       })
       .catch((error) => console.log("Ошибка! Не удалось загрузить карточки"));
 
     bid
       .getUser()
       .then((res) => {
-        setCurrentUser(res);
+        setCurrentUser(res.data);
       })
       .catch((error) =>
         console.log("Ошибка! Не удалось загрузить данные пользователя")

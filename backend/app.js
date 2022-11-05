@@ -2,7 +2,6 @@ const express = require('express');
 const { celebrate, Joi, errors } = require('celebrate');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const cors = require('cors');
 const { login, createUser } = require('./controlles/user');
 const auth = require('./middlewares/auth');
 const Error404 = require('./Errors/Error404');
@@ -10,13 +9,28 @@ const { requestLogger, errorLogger } = require('./middlewares/loger');
 require('dotenv').config();
 
 const { PORT = 3000 } = process.env;
-const app = express();
 
+const app = express();
+const allowOrigins = ['https://saveliev.nomoredomains.icu', 'http://localhost:3000', 'http://saveliev.nomoredomains.icu'];
+
+// eslint-disable-next-line consistent-return
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  const { origin } = req.headers;
+  if (allowOrigins.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+  }
+  const { method } = req;
+  const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
+  const requestHeaders = req.headers['access-control-request-headers'];
+  if (method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
+    res.header('Access-Control-Allow-Headers', requestHeaders);
+    res.status(200);
+    return res.end();
+  }
   next();
 });
+
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
 });
@@ -26,12 +40,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(requestLogger);
 
-// app.get('/crash-test', () => {
-//   setTimeout(() => {
-//     throw new Error('Сервер сейчас упадёт');
-//   }, 0);
-// });
-
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 app.post('/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),

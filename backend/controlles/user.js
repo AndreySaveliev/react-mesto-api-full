@@ -71,7 +71,7 @@ const getUser = (req, res, next) => {
 const changeUserAvatar = (req, res, next) => {
   const { avatar } = req.body;
   User.findByIdAndUpdate(
-    req.user._id,
+    req.user,
     { avatar },
     { new: true, runValidators: true },
   )
@@ -131,7 +131,10 @@ const login = (req, res, next) => {
           maxAge: 3600 * 24 * 7,
           httpOnly: true,
         });
-        return res.send({ data: user });
+        return res.send({
+          data: user,
+          token,
+        });
       });
     })
     .catch((err) => {
