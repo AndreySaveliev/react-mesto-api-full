@@ -6,6 +6,7 @@ class AuthApi {
   signup(password, email) {
     return fetch(`${this._baseURL}/signup`, {
       method: 'POST',
+      credentials: 'include',
       headers: {
         "Content-Type": 'application/json'
       },
@@ -20,6 +21,7 @@ class AuthApi {
   signin(password, email) {
     return fetch(`${this._baseURL}/signin`, {
       method: 'POST',
+      credentials: 'include',
       headers: {
         'Accept': 'application/json',
         "Content-Type": 'application/json'
@@ -35,6 +37,7 @@ class AuthApi {
   checkMe(token) {
     return fetch(`${this._baseURL}/users/me`, {
       method: 'GET',
+      credentials: 'include',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',

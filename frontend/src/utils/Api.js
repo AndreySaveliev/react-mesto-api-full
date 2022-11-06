@@ -8,6 +8,7 @@ class Api {
   }
   getUser() {
    return fetch(`${this._baseURL}/users/me`, {
+    credentials: 'include',
       headers: {
         authorization: this._authorization
       }
@@ -16,6 +17,7 @@ class Api {
   }
   getInitialCards() {
     return fetch(`${this._baseURL}/cards`, {
+      credentials: 'include',
        headers: {
          authorization: this._authorization
        }
@@ -25,6 +27,7 @@ class Api {
   saveUserData(name, about) {
     return fetch(`${this._baseURL}/users/me`, {
       method: "PATCH",
+      credentials: 'include',
       headers: {
         authorization: this._authorization,
         'Content-Type': 'application/json'
@@ -39,6 +42,7 @@ class Api {
   postCard(name, link) {
     return fetch(`${this._baseURL}/cards`,{
       method: "POST",
+      credentials: 'include',
       headers: {
         authorization: this._authorization,
         'Content-Type': 'application/json'
@@ -53,6 +57,7 @@ class Api {
   deleteCard(cardId) {
     return fetch(`${this._baseURL}/cards/${cardId}`, {
       method: "DELETE",
+      credentials: 'include',
       headers: {
         authorization: this._authorization,
       }
@@ -62,6 +67,7 @@ class Api {
   like(cardId) {
     return fetch(`${this._baseURL}/cards/${cardId}/likes`,{
       method: "PUT",
+      credentials: 'include',
       headers: {
         authorization: this._authorization
       }
@@ -71,6 +77,7 @@ class Api {
   unlike(cardId) {
     return fetch(`${this._baseURL}/cards/${cardId}/likes`,{
       method: "DELETE",
+      credentials: 'include',
       headers: {
         authorization: this._authorization
       }
@@ -80,6 +87,7 @@ class Api {
   changeProfilePic(avatar) {
     return fetch(`https://api.saveliev.nomoredomains.icu/users/me/avatar`, {
       method: "PATCH",
+      credentials: 'include',
       headers: {
         authorization: this._authorization,
         'Content-Type': 'application/json',

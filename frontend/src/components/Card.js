@@ -16,20 +16,21 @@ function Card({
   }
 
   function handleLikeClick() {
-    console.log(card, 'card in card.js')
     onCardLike(card);
     setLiked(!isLiked)
   }
 
   function handleCardDelete(card) {
-    console.log(card)
     onCardDeleteClick();
     onCardClick(card._id);
   }
 
   useEffect(() => {
     setAuthor(card.owner === currentUser._id)
-    });
+    if (card.likes.some((c) => c === currentUser._id)) {
+      setLiked(true)
+    }
+  }, []);
 
   return (
     <div className="grid__cell" key={card}>

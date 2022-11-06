@@ -1,6 +1,7 @@
 const express = require('express');
 const { celebrate, Joi, errors } = require('celebrate');
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const { login, createUser } = require('./controlles/user');
 const auth = require('./middlewares/auth');
@@ -11,6 +12,7 @@ require('dotenv').config();
 const { PORT = 3000 } = process.env;
 
 const app = express();
+app.use(cookieParser());
 const allowOrigins = ['https://saveliev.nomoredomains.icu', 'http://localhost:3000', 'http://saveliev.nomoredomains.icu'];
 
 // eslint-disable-next-line consistent-return
@@ -18,6 +20,7 @@ app.use((req, res, next) => {
   const { origin } = req.headers;
   if (allowOrigins.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin);
+    res.header('Access-Control-Allow-Credentials', true);
   }
   const { method } = req;
   const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
@@ -62,6 +65,7 @@ app.post('/signup', celebrate({
 }), createUser);
 
 app.use(auth);
+
 app.use('/users', require('./routes/user'));
 app.use('/cards', require('./routes/card'));
 

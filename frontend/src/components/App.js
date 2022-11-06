@@ -91,17 +91,14 @@ function App() {
   }
 
   function handleClickLike(card) {
-    console.log(card, 'handle clikc card')
     const isLiked = card.likes.some((i) => i === currentUser._id);
     if (!isLiked) {
       bid
         .like(card._id)
         .then((newCard) => {
-          console.log(newCard, 'newCard')
           setCards((state) =>
             state.map((c) => (c._id === card._id ? newCard.data : c))
           );
-          console.log(cards)
         })
         .catch((error) => console.log("Ошибка! Не удалось отправить запрос"));
     } else {

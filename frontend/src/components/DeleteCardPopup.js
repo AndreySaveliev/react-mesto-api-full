@@ -2,7 +2,6 @@ import PopupWithForm from "./PopupWithForm";
 function DeleteCardPopup({ isOpen, onClose, onCardDelete, card }) {
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(card)
     onCardDelete(card);
   }
 
