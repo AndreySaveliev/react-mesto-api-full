@@ -7,7 +7,7 @@ const Error401 = require('../Errors/Error401');
 const Error409 = require('../Errors/Error409');
 require('dotenv').config();
 
-const { JWT_SECRET = 'Andrey'} = process.env;
+const { JWT_SECRET = 'Andrey' } = process.env;
 
 const getUsers = (req, res, next) => {
   User.find({})
